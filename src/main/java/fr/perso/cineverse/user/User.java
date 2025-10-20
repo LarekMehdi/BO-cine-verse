@@ -51,7 +51,7 @@ public class User {
     /** ROLE **/
 
     public boolean hasRole() {
-        return UtilEntity.isEmpty(this.role);
+        return !UtilEntity.isEmpty(this.role);
     }
 
     public void setDefaultRoleIfNeeded() {
