@@ -1,5 +1,6 @@
 package fr.perso.cineverse.user.dto;
 
+import fr.perso.cineverse.constants.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -23,5 +24,7 @@ public class UserDto {
     @NotBlank(message = "Le password ne doit pas être vide")
     @Size(min = 6, message = "Le password doit contenir au moins 6 caractères")
     private String      password;
+
+    private Role        role;
 
 }
