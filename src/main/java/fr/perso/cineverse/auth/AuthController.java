@@ -17,9 +17,9 @@ public class AuthController {
     @Autowired
     private AuthService         authService;
 
-     /** SIGNUP **/
+    /** SIGNUP **/
 
-     @PostMapping("signup")
+    @PostMapping("signup")
     public User signup(@RequestBody @Valid UserDto dto) {
         return this.authService.signup(dto);
     }
