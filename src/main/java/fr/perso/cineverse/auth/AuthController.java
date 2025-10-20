@@ -19,7 +19,7 @@ public class AuthController {
      /** SIGNUP **/
 
     public User signup(@RequestBody @Valid UserDto dto) {
-        return new User();
+        return this.authService.signup(dto);
     }
     
 }

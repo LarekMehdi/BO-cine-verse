@@ -2,6 +2,7 @@ package fr.perso.cineverse.user;
 
 import fr.perso.cineverse.constants.Role;
 import fr.perso.cineverse.user.dto.UserDto;
+import fr.perso.cineverse.utils.UtilEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,6 +46,16 @@ public class User {
         this.pseudo = dto.getPseudo();
         this.password = dto.getPassword();
         this.role = dto.getRole();
+    }
+
+    /** ROLE **/
+
+    public boolean hasRole() {
+        return UtilEntity.isEmpty(this.role);
+    }
+
+    public void setDefaultRoleIfNeeded() {
+        if (!this.hasRole()) this.role = Role.USER;
     }
 
 }

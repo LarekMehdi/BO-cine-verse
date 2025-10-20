@@ -34,10 +34,10 @@ public class AuthService {
         }
 
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        user.setDefaultRoleIfNeeded();
+        this.userRepository.save(user);
 
-
-        return new User();
-
+        return user;
     }
 
 
