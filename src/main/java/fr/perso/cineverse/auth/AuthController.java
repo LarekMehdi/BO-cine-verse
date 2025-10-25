@@ -1,12 +1,17 @@
 package fr.perso.cineverse.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
-
+import fr.perso.cineverse.auth.dto.AuthResponseDto;
+import fr.perso.cineverse.auth.dto.SigninDto;
 import fr.perso.cineverse.user.User;
 import fr.perso.cineverse.user.dto.UserDto;
 
@@ -22,6 +27,22 @@ public class AuthController {
     @PostMapping("signup")
     public User signup(@RequestBody @Valid UserDto dto) {
         return this.authService.signup(dto);
+    }
+
+    /** SIGNIN **/
+
+    @PostMapping("signin")
+    public ResponseEntity<?> signin(@RequestBody @Valid SigninDto dto) {
+        try {
+            AuthResponseDto response = this.authService.signin(dto);
+            return ResponseEntity.ok(response);
+        } catch (UsernameNotFoundException | BadCredentialsException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants invalides");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur serveur");
+        }
     }
     
 }
