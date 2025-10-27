@@ -19,6 +19,7 @@ public class UserPrincipal implements UserDetails{
     
     private Long id;
     private String pseudo;
+    private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -35,6 +36,7 @@ public class UserPrincipal implements UserDetails{
         return new UserPrincipal(
             user.getId(),
             user.getPseudo(),
+            user.getEmail(),
             user.getPassword(),
             authorities);
     }

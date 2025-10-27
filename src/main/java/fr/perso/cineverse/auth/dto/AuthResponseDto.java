@@ -13,12 +13,14 @@ public class AuthResponseDto {
     private String  tokenType = "Bearer";
     private Long    id;
     private String  pseudo;
+    private String  email;
     private String  role;
 
-    public AuthResponseDto(String accessToken, Long id, String pseudo, String role) {
+    public AuthResponseDto(String accessToken, Long id, String pseudo, String email, String role) {
         this.accessToken = accessToken;
         this.id = id;
         this.pseudo = pseudo;
+        this.email = email;
         this.role = role;
     }
 }

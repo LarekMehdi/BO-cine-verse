@@ -72,6 +72,7 @@ public class AuthService {
             token,
             principal.getId(),
             principal.getUsername(),
+            principal.getEmail(),
             principal.getAuthorities().stream().findFirst().get().getAuthority()
         );
     }
